@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CashFlow.RC.Common.Extensions
+namespace CashFlow.RC.Common.extensions
 {
     public static class StringExtensionRC
     {

@@ -1,4 +1,4 @@
-﻿using CashFlow.RC.Common.Extensions;
+﻿using CashFlow.RC.Common.extensions;
 using CashFlow.RC.Domain.enums;
 using System;
 using System.Collections.Generic;

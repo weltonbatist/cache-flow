@@ -28,26 +28,34 @@ namespace CashFlow.NATS
             _connection = _createConnectionFactory.GetConnection(_server).Result;
         }
 
-        public void Publish(string topic, string message)
+        public void Publish(string topic, string message, string correlationId)
         {
-            Send(topic, message);
+            Send(topic, message, correlationId);
         }
 
-        private void Send(string topic, string message, int countErros = 0)
+        private void Send(string topic, string message, string correlationId, int countErros = 0)
         {
             try
             {
-                _connection.Publish(topic, Encoding.UTF8.GetBytes(message));
+                Msg msg = new Msg();
+                msg.Subject = topic;
+                msg.Data = Encoding.UTF8.GetBytes(message);
+                msg.Header = new MsgHeader
+                {
+                    { "correlationId", correlationId }
+                };
+
+                _connection.Publish(msg);
             }
             catch (NATSReconnectBufferException ne) 
             {
                 _logger.LogError(ne, $"{nameof(NATSReconnectBufferException)}: Error publishing message to NATS => Message: {ne.Message} BaseException:{ne.GetBaseException()}");
-                RunErrorFlow(topic, message, countErros, ne);
+                RunErrorFlow(topic, message, correlationId, countErros, ne);
             }
             catch (NATSException ne)
             {
                 _logger.LogError(ne, $"{nameof(NATSException)}: Error publishing message to NATS => Message: {ne.Message} BaseException:{ne.GetBaseException()}");
-                RunErrorFlow(topic, message, countErros, ne);
+                RunErrorFlow(topic, message, correlationId, countErros, ne);
 
             }
             catch (Exception ex)
@@ -57,20 +65,20 @@ namespace CashFlow.NATS
             }
         }
 
-        private void RunErrorFlow(string topic, string message, int countErros, Exception exception) 
+        private void RunErrorFlow(string topic, string message, string correlationId, int countErros, Exception exception) 
         {
             if (_connection is null || _connection?.State == ConnState.DISCONNECTED)
-                RemountConnection(topic, message, countErros++);
+                RemountConnection(topic, message, correlationId, countErros++);
             else
                 throw exception;
         }
 
-        private void RemountConnection(string topic, string message, int countErros)
+        private void RemountConnection(string topic, string message, string correlationId, int countErros)
         {
             _connection = _createConnectionFactory.GetConnection(_server).Result;
 
             if (countErros < 3)
-                Send(topic, message, countErros);
+                Send(topic, message, correlationId, countErros);
             else
                 throw new Exception("Error publishing message to NATS");
         }

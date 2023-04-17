@@ -7,11 +7,7 @@ using System.Threading.Tasks;
 
 namespace CashFlow.RC.Domain.repository
 {
-    public interface IFinancialReleaseRepository
+    public interface IFinancialReleaseRepository: IEntityRepository<FinancialRelease>
     {
-        Task Add(FinancialRelease financialRelease);
-        Task Delete(FinancialRelease financialRelease);
-        Task<FinancialRelease> Get(Guid key);
-        Task<IEnumerable<FinancialRelease>> GetAll();
     }
 }

@@ -32,7 +32,7 @@ namespace CashFlow.NATS
         {
             try
             {
-                _connection.SubscribeAsync(topic, messageHandler);
+                 _connection.SubscribeAsync(topic, messageHandler);
             }
             catch (Exception ex)
             {

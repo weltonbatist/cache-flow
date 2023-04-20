@@ -15,10 +15,10 @@ namespace CashFlow.RC.Work.service
     public class PersistenceService
     {
         private readonly ILogger<PersistenceService> _logger;
-        private readonly IFinancialReleaseRepository _repository;
+        private readonly IEntityRepository<FinancialRelease> _repository;
         private readonly NatsPublisher _publisher;
         private const string TOPIC = "cashflow.summary";
-        public PersistenceService(ILogger<PersistenceService> logger, IFinancialReleaseRepository repository, NatsPublisher publisher)
+        public PersistenceService(ILogger<PersistenceService> logger, IEntityRepository<FinancialRelease> repository, NatsPublisher publisher)
         {
             _logger = logger;
             _repository = repository;

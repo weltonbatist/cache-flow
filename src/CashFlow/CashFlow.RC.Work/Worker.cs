@@ -9,6 +9,7 @@ namespace CashFlow.RC.Work
         private readonly NatsSubscriber _subscriber;
         private readonly PersistenceService _service;
         private const string TOPIC = "cashflow.financialrelease";
+        private const string QUEGROUP = "cashflow.financialrelease.queuegroup";
         public Worker(ILogger<Worker> logger, NatsSubscriber subscriber, PersistenceService service)
         {
             _logger = logger;
@@ -34,11 +35,11 @@ namespace CashFlow.RC.Work
         {
             await Task.Run(() => {
 
-                _subscriber.Subscribe(TOPIC, (sender, message) =>
+                _subscriber.Subscribe(TOPIC, QUEGROUP, async (sender, message) =>
                 {
                     try
                     {
-                        _service.Process(message.Message);
+                        await _service.Process(message.Message);
                     }
                     catch (Exception ex)
                     {

@@ -1,14 +1,14 @@
 {
   "profiles": {
-    "CashFlow.RC.Work": {
+    "CashFlow.CD.Work": {
       "commandName": "Project",
       "environmentVariables": {
         "DOTNET_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true
-    //},
-    //"Docker": {
-    //  "commandName": "Docker"
-    //}
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
   }
 }

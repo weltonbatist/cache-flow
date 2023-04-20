@@ -1,4 +1,5 @@
-﻿using MongoDB.Driver;
+﻿using CashFlow.RC.Domain.repository;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CashFlow.RC.Infra.repository
 {
-    public class EntityRepository<T> where T : class
+    public class EntityRepository<T> : IEntityRepository<T> where T : class
     {
         private readonly IMongoCollection<T> _collection;
 
@@ -18,32 +19,35 @@ namespace CashFlow.RC.Infra.repository
             _collection = database.GetCollection<T>(collectionName);
         }
 
-        public void Create(T entity)
+        public Task Create(T entity)
         {
             _collection.InsertOne(entity);
+            return Task.CompletedTask;
         }
 
-        public IEnumerable<T> Read()
+        public async Task<IEnumerable<T>> Read()
         {
-            return _collection.Find(e => true).ToList();
+            return await _collection.Find(e => true).ToListAsync();
         }
 
-        public T Read(string id)
+        public async Task<T> Read(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
-            return _collection.Find(filter).FirstOrDefault();
+            return await _collection.Find(filter).FirstOrDefaultAsync();
         }
 
-        public void Update(string id, T entity)
+        public Task Update(string id, T entity)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.ReplaceOne(filter, entity);
+            return Task.CompletedTask;
         }
 
-        public void Delete(string id)
+        public Task Delete(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
             _collection.DeleteOne(filter);
+            return Task.CompletedTask;
         }
     }
 }

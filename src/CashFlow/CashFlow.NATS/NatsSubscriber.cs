@@ -16,7 +16,7 @@ namespace CashFlow.NATS
         private readonly ILogger _logger;
         private readonly Server _server;
         private readonly ICreateConnectionFactory _createConnectionFactory;
-
+        private IAsyncSubscription _subscription;
         public NatsSubscriber(
           ILogger<NatsSubscriber> logger,
           Server server,
@@ -28,11 +28,13 @@ namespace CashFlow.NATS
             _connection = _createConnectionFactory.GetConnection(_server).Result;
         }
 
-        public void Subscribe(string topic, EventHandler<MsgHandlerEventArgs> messageHandler)
+        public void Subscribe(string topic, string queueGroup, EventHandler<MsgHandlerEventArgs> messageHandler)
         {
             try
             {
-                 _connection.SubscribeAsync(topic, messageHandler);
+                _subscription = _connection.SubscribeAsync(topic, queueGroup);
+                _subscription.MessageHandler += messageHandler;
+                _subscription.Start();
             }
             catch (Exception ex)
             {
@@ -40,6 +42,11 @@ namespace CashFlow.NATS
                 throw;
             }
 
+        }
+
+        public void Unsubscribe() 
+        {
+            _subscription?.Unsubscribe();
         }
     }
 }

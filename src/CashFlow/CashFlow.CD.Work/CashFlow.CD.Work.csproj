@@ -4,19 +4,12 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-CashFlow.RC.Work-2ce22aec-488f-4371-a977-4bc560fc09f2</UserSecretsId>
+    <UserSecretsId>dotnet-CashFlow.CD.Work-d4086096-483e-4ef9-90c6-1661570414c7</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CashFlow.CD.Domain\CashFlow.CD.Domain.csproj" />
-    <ProjectReference Include="..\CashFlow.NATS\CashFlow.NATS.csproj" />
-    <ProjectReference Include="..\CashFlow.RC.Domain\CashFlow.RC.Domain.csproj" />
-    <ProjectReference Include="..\CashFlow.RC.Infra\CashFlow.RC.Infra.csproj" />
   </ItemGroup>
 </Project>

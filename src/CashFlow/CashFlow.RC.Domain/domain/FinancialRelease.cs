@@ -1,5 +1,6 @@
-﻿using CashFlow.RC.Common.extensions;
+﻿
 using CashFlow.RC.Domain.enums;
+using CashFlow.Util.extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace CashFlow.RC.Domain.domain
 {
     public class FinancialRelease
     {
+        
         public Guid Key => $"{StoreId}{CashRegisterId}{Date}{Amount}{ReleaseType}".ConvertToGuid();
         public decimal Amount { get; set; }
         public ReleaseType ReleaseType { get; set; }

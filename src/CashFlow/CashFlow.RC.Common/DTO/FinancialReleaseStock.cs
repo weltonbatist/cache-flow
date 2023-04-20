@@ -1,4 +1,4 @@
-﻿using CashFlow.RC.Common.extensions;
+﻿using CashFlow.Util.extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

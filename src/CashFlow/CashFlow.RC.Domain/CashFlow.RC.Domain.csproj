@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CashFlow.RC.Common\CashFlow.RC.Common.csproj" />
+    <ProjectReference Include="..\CashFlow.Util\CashFlow.Util.csproj" />
   </ItemGroup>
 
 </Project>

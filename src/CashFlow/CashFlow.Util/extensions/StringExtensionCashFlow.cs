@@ -5,9 +5,9 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CashFlow.RC.Common.extensions
+namespace CashFlow.Util.extensions
 {
-    public static class StringExtensionRC
+    public static class StringExtensionCashFlow
     {
         public static Guid ConvertToGuid(this string input)
         {

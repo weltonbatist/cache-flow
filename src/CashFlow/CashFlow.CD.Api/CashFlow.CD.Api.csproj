@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CashFlow.CD.API.Service\CashFlow.CD.API.Service.csproj" />
+    <ProjectReference Include="..\CashFlow.CD.Domain\CashFlow.CD.Domain.csproj" />
+    <ProjectReference Include="..\CashFlow.CD.Infra\CashFlow.CD.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

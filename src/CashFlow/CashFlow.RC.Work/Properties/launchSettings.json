@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "CashFlow.RC.Work": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true
+  }
+}

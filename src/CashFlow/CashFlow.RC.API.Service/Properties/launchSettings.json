@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "CashFlow.RC.API.Service": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:59855;http://localhost:59860"
+    }
+  }
+}

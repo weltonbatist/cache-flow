@@ -50,7 +50,6 @@ services:
       - cashflow-compose-network
     depends_on:
       - nats
-      - cashflow-rc-wrk
     ports:
       - '15002:15002' 
       
@@ -61,7 +60,27 @@ services:
       - cashflow-compose-network
     depends_on:
       - nats 
-      - db  
+      - db
+  
+  cashflow-cd-api:
+    build: ./CashFlow.CD.API
+    container_name: cashflow-cd-api
+    networks:
+      - cashflow-compose-network
+    depends_on:
+      - db
+    ports:
+      - '15003:15003'
+
+  cashflow-cd-wrk:
+    build: .
+    container_name: cashflow-cd-wrk
+    networks:
+      - cashflow-compose-network
+    depends_on:
+      - nats 
+      - db
+        
 
 networks:
   cashflow-compose-network:

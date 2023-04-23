@@ -2,7 +2,6 @@
 using CashFlow.CD.Domain.domain;
 using CashFlow.CD.Domain.repository;
 using CashFlow.CD.Infra.repository;
-using CashFlow.RC.Domain.domain;
 
 namespace CashFlow.CD.Api.configurations
 {

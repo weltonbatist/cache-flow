@@ -11,15 +11,15 @@ namespace CashFlow.RC.Common.dto
     public class FinancialReleaseStock
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field cannot be null or empty!")]
-        public decimal Amount { get; set; }
+        public virtual decimal Amount { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field cannot be null or empty!")]
-        public int ReleaseType { get; set; }
+        public virtual int ReleaseType { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field cannot be null or empty!")]
-        public DateTime Date { get; set; }
+        public virtual DateTime Date { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field cannot be null or empty!")]
-        public int StoreId { get; set; }
+        public virtual int StoreId { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "This field cannot be null or empty!")]
-        public int CashRegisterId { get; set; }
+        public virtual int CashRegisterId { get; set; }
 
         public Guid GetKey()
         {

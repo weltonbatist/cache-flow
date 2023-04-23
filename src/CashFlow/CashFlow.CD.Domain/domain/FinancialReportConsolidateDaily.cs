@@ -25,11 +25,11 @@ namespace CashFlow.CD.Domain.domain
 
         [BsonId]
         [BsonRepresentation(BsonType.String)]
-        public string Id { get; set; }
-        public DateOnly Date { get; private set; }
-        public ICollection<FinancialSummary> FinancialSummaries { get; set; }
+        public virtual string Id { get; set; }
+        public virtual DateOnly Date { get; private set; }
+        public virtual ICollection<FinancialSummary> FinancialSummaries { get; set; }
 
-        public void AddFinancialSummary(FinancialSummary financialSummary)
+        public virtual void AddFinancialSummary(FinancialSummary financialSummary)
         {
             if (FinancialSummaries == null)
                 FinancialSummaries = new List<FinancialSummary>();

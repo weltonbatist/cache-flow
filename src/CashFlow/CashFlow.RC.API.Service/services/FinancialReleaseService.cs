@@ -22,12 +22,18 @@ namespace CashFlow.RC.API.Service.services
             _publisher = publisher;
         }
 
-        public Task<bool> LaunchNewCashFlow(FinancialReleaseStock financialReleaseStock, string correlationId) 
+        public virtual Task<bool> LaunchNewCashFlow(FinancialReleaseStock financialReleaseStock, string correlationId) 
         {
             var entity = financialReleaseStock.ConvertToEntity();
 
             try
             {
+                if(!entity.IsValid())
+                {
+                    _logger.LogWarning($"{correlationId}: 'FinancialRelease' entity is not valid");
+                    return Task.FromResult(false);
+                }
+
                 _publisher.Publish(TOPIC, JsonSerializer.Serialize(entity), correlationId);
                 return Task.FromResult(true);
             }

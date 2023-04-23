@@ -22,11 +22,11 @@ namespace CashFlow.CD.Domain.domain
             
         }
 
-        public long Id { get; set; }
-        public decimal Amount { get; set; }
-        public DateTime Date { get; set; }
-        public int StoreId { get; set; }
-        public int CashRegisterId { get; set; }
-        public string CorrelationId { get; set; }
+        public virtual long Id { get; set; }
+        public virtual decimal Amount { get; set; }
+        public virtual DateTime Date { get; set; }
+        public virtual int StoreId { get; set; }
+        public virtual int CashRegisterId { get; set; }
+        public virtual string CorrelationId { get; set; }
     }
 }

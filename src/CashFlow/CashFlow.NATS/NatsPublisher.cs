@@ -28,7 +28,7 @@ namespace CashFlow.NATS
             _connection = _createConnectionFactory.GetConnection(_server).Result;
         }
 
-        public void Publish(string topic, string message, string correlationId)
+        public virtual void Publish(string topic, string message, string correlationId)
         {
             Send(topic, message, correlationId);
         }

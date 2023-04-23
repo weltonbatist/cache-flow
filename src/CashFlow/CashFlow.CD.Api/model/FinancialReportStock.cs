@@ -17,6 +17,9 @@ namespace CashFlow.CD.Api.model
         public List<FinancialReportStoreStock> FinancialReportStoreStock { get; set; }
         public static FinancialReportStock Convert(FinancialReportConsolidateDaily financialReportConsolidateDaily) 
         {
+            if(financialReportConsolidateDaily is null)
+                return null;
+
             decimal totalAmount = 0;
             var group = financialReportConsolidateDaily.FinancialSummaries.GroupBy(x => x.StoreId);
             List<FinancialReportStoreStock> financialReportStoreStocks = new List<FinancialReportStoreStock>();

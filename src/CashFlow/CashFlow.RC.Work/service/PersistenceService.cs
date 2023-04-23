@@ -46,6 +46,11 @@ namespace CashFlow.RC.Work.service
                 _logger.LogWarning($"Message received with no entity(FinancialRelease). CorrelationId: {correlationId}");
                 return;
             }
+            if (!entity.IsValid()) 
+            {
+                _logger.LogWarning("'FinancialRelease' entity is not valid. CorrelationId: {correlationId}", correlationId);    
+                return;
+            }
 
             await _repository.Create(entity);
 

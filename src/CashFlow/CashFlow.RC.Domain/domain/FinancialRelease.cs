@@ -18,5 +18,10 @@ namespace CashFlow.RC.Domain.domain
         public DateTime Date { get; set; }
         public int StoreId { get; set; }
         public int CashRegisterId { get; set; }
+
+        public bool IsValid() 
+        {
+         return Amount != 0 && Date != DateTime.MinValue && StoreId > 0 && CashRegisterId > 0;
+        }
     }
 }
